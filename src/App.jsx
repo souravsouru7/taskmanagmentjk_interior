@@ -107,6 +107,8 @@ const theme = createTheme({
           borderRadius: '8px',
           padding: '8px 24px',
           fontWeight: 500,
+          minWidth: 44, // Minimum touch target size
+          minHeight: 44,
         },
         contained: {
           boxShadow: 'none',
@@ -129,6 +131,26 @@ const theme = createTheme({
         root: {
           '& .MuiOutlinedInput-root': {
             borderRadius: '8px',
+          },
+        },
+      },
+    },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          // Ensure proper height on mobile
+          '@media (max-width: 600px)': {
+            minHeight: '56px',
+          },
+        },
+      },
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        root: {
+          // Ensure proper height on mobile
+          '@media (max-width: 600px)': {
+            minHeight: '56px',
           },
         },
       },

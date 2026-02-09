@@ -62,6 +62,7 @@ const StatCard = ({ title, value, icon, color, trend, onClick }) => (
       background: `linear-gradient(45deg, ${color} 30%, ${color}90 90%)`,
       p: { xs: 1, sm: 2 },
       cursor: onClick ? 'pointer' : 'default',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       '&:hover': onClick ? {
         opacity: 0.9,
         transform: 'scale(1.02)',
@@ -73,23 +74,50 @@ const StatCard = ({ title, value, icon, color, trend, onClick }) => (
     <CardContent sx={{ color: 'white' }}>
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Box>
-          <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '0.875rem', sm: '1rem' } }}>
+          <Typography 
+            variant="h6" 
+            gutterBottom 
+            sx={{ 
+              fontSize: { xs: '0.875rem', sm: '1rem' },
+              color: 'white',
+              fontWeight: 500
+            }}
+          >
             {title}
           </Typography>
-          <Typography variant="h4" sx={{ fontSize: { xs: '1.5rem', sm: '2rem' } }}>{value || 0}</Typography>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              fontSize: { xs: '1.5rem', sm: '2rem' },
+              color: 'white',
+              fontWeight: 600,
+              textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+            }}
+          >
+            {value || 0}
+          </Typography>
         </Box>
         <Avatar sx={{ 
-          bgcolor: 'rgba(255,255,255,0.2)',
+          bgcolor: 'rgba(255,255,255,0.3)',
           width: { xs: 32, sm: 40 },
-          height: { xs: 32, sm: 40 }
+          height: { xs: 32, sm: 40 },
+          color: 'white'
         }}>
           {icon}
         </Avatar>
       </Box>
       {trend && (
         <Box display="flex" alignItems="center" mt={2}>
-          <TrendingUpIcon sx={{ mr: 1, fontSize: { xs: '1rem', sm: '1.25rem' } }} />
-          <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>{trend}</Typography>
+          <TrendingUpIcon sx={{ mr: 1, fontSize: { xs: '1rem', sm: '1.25rem' }, color: 'white' }} />
+          <Typography 
+            variant="body2" 
+            sx={{ 
+              fontSize: { xs: '0.75rem', sm: '0.875rem' },
+              color: 'rgba(255,255,255,0.9)'
+            }}
+          >
+            {trend}
+          </Typography>
         </Box>
       )}
     </CardContent>
@@ -112,7 +140,14 @@ const TaskProgress = ({ tasks }) => {
           Task Progress
         </Typography>
         <Box display="flex" alignItems="center" mb={2}>
-          <Typography variant="h4" sx={{ mr: 2 }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              mr: 2,
+              fontWeight: 600,
+              color: 'text.primary'
+            }}
+          >
             {Math.round(progress)}%
           </Typography>
           <Box flexGrow={1}>
@@ -124,8 +159,18 @@ const TaskProgress = ({ tasks }) => {
           </Box>
         </Box>
         <Box display="flex" justifyContent="space-between">
-          <Typography variant="body2">Completed: {completed}</Typography>
-          <Typography variant="body2">Total: {total}</Typography>
+          <Typography 
+            variant="body2" 
+            sx={{ fontWeight: 500 }}
+          >
+            Completed: {completed}
+          </Typography>
+          <Typography 
+            variant="body2" 
+            sx={{ fontWeight: 500 }}
+          >
+            Total: {total}
+          </Typography>
         </Box>
       </CardContent>
     </Card>
@@ -409,17 +454,32 @@ const ProjectDetailsDialog = ({ projects, open, onClose }) => {
                 ) : (
                   <Box display="flex" flexDirection="column" gap={2}>
                     <Box>
-                      <Typography variant="subtitle1">Total Projects</Typography>
-                      <Typography variant="h4">{totalProjects}</Typography>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>Total Projects</Typography>
+                      <Typography 
+                        variant="h4" 
+                        sx={{ 
+                          fontWeight: 600,
+                          color: 'text.primary'
+                        }}
+                      >
+                        {totalProjects}
+                      </Typography>
                     </Box>
                     <Box>
-                      <Typography variant="subtitle1">Completion Rate</Typography>
+                      <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>Completion Rate</Typography>
                       <LinearProgress 
                         variant="determinate" 
                         value={totalProjects > 0 ? (activeProjects.length / totalProjects) * 100 : 0} 
                         sx={{ height: 10, borderRadius: 5 }}
                       />
-                      <Typography variant="body2" color="text.secondary" mt={1}>
+                      <Typography 
+                        variant="body2" 
+                        sx={{ 
+                          color: 'text.secondary',
+                          mt: 1,
+                          fontWeight: 500
+                        }}
+                      >
                         {totalProjects > 0 ? Math.round((activeProjects.length / totalProjects) * 100) : 0}% Active
                       </Typography>
                     </Box>
@@ -527,20 +587,52 @@ const TaskDetailsDialog = ({ tasks, open, onClose }) => {
                 </Typography>
                 <Box display="flex" flexDirection="column" gap={2}>
                   <Box>
-                    <Typography variant="subtitle1">Total Tasks</Typography>
-                    <Typography variant="h4">{taskStats.total}</Typography>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>Total Tasks</Typography>
+                    <Typography 
+                      variant="h4" 
+                      sx={{ 
+                        fontWeight: 600,
+                        color: 'text.primary'
+                      }}
+                    >
+                      {taskStats.total}
+                    </Typography>
                   </Box>
                   <Box>
-                    <Typography variant="subtitle1">Completed Tasks</Typography>
-                    <Typography variant="h4" color="success.main">{taskStats.completed}</Typography>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>Completed Tasks</Typography>
+                    <Typography 
+                      variant="h4" 
+                      sx={{ 
+                        fontWeight: 600,
+                        color: 'success.main'
+                      }}
+                    >
+                      {taskStats.completed}
+                    </Typography>
                   </Box>
                   <Box>
-                    <Typography variant="subtitle1">In Progress</Typography>
-                    <Typography variant="h4" color="warning.main">{taskStats.inProgress}</Typography>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>In Progress</Typography>
+                    <Typography 
+                      variant="h4" 
+                      sx={{ 
+                        fontWeight: 600,
+                        color: 'warning.main'
+                      }}
+                    >
+                      {taskStats.inProgress}
+                    </Typography>
                   </Box>
                   <Box>
-                    <Typography variant="subtitle1">Pending Tasks</Typography>
-                    <Typography variant="h4" color="error.main">{taskStats.pending}</Typography>
+                    <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>Pending Tasks</Typography>
+                    <Typography 
+                      variant="h4" 
+                      sx={{ 
+                        fontWeight: 600,
+                        color: 'error.main'
+                      }}
+                    >
+                      {taskStats.pending}
+                    </Typography>
                   </Box>
                 </Box>
               </CardContent>
@@ -609,6 +701,31 @@ const TaskDetailsDialog = ({ tasks, open, onClose }) => {
 };
 
 const AdminDashboard = () => {
+  // Helper to extract project name from various project data formats
+  const getProjectName = (project) => {
+    // Debug: Log project data structure
+    console.log('Project data:', project, 'Type:', typeof project);
+    
+    // Handle case where project is a string (project ID)
+    if (typeof project === 'string') {
+      console.log('Project is string:', project);
+      return project || 'No Project Assigned';
+    }
+    
+    // Handle case where project is an object
+    if (project && typeof project === 'object') {
+      console.log('Project object keys:', Object.keys(project));
+      // Try multiple possible field names for project name
+      const projectName = project.name || project.title || 'No Project Assigned';
+      console.log('Extracted project name:', projectName);
+      return projectName;
+    }
+    
+    // Handle null/undefined cases
+    console.log('Project is null/undefined');
+    return 'No Project Assigned';
+  };
+
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
   const { tasks, loading: tasksLoading } = useSelector((state) => state.tasks);
@@ -623,10 +740,11 @@ const AdminDashboard = () => {
   const [newDueDate, setNewDueDate] = useState('');
   const [extensionError, setExtensionError] = useState('');
 
+  // Fetch initial data
   useEffect(() => {
-    dispatch(fetchTasks());
     dispatch(fetchProjects());
     dispatch(fetchUsers());
+    dispatch(fetchTasks());
   }, [dispatch]);
 
   if (tasksLoading || projectsLoading || usersLoading) {
@@ -829,7 +947,8 @@ const AdminDashboard = () => {
                 <Table>
                   <TableHead>
                     <TableRow>
-                      <TableCell>Task Title</TableCell>
+                      <TableCell>Task Name</TableCell>
+                      <TableCell>Project</TableCell>
                       <TableCell>Requested By</TableCell>
                       <TableCell>Current Due Date</TableCell>
                       <TableCell>Requested Due Date</TableCell>
@@ -840,10 +959,25 @@ const AdminDashboard = () => {
                   </TableHead>
                   <TableBody>
                     {tasks
-                      .filter(task => task.extensionRequest?.requested && task.extensionRequest?.status === 'pending')
+                      .filter(task => task.extensionRequest?.requested)
                       .map((task) => (
                         <TableRow key={task._id}>
-                          <TableCell>{task.title}</TableCell>
+                          <TableCell>
+                            <Typography 
+                              variant="subtitle2" 
+                              sx={{ fontWeight: 500 }}
+                            >
+                              {task.title}
+                            </Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography 
+                              variant="body2"
+                              sx={{ fontWeight: 400 }}
+                            >
+                              {getProjectName(task.project)}
+                            </Typography>
+                          </TableCell>
                           <TableCell>{task.assignedTo?.name}</TableCell>
                           <TableCell>{formatDateForDisplay(task.dueDate)}</TableCell>
                           <TableCell>{formatDateForDisplay(task.extensionRequest?.newDueDate)}</TableCell>
@@ -851,28 +985,30 @@ const AdminDashboard = () => {
                           <TableCell>
                             <Chip
                               label={task.extensionRequest?.status}
-                              color="warning"
+                              color={task.extensionRequest?.status === 'approved' ? 'success' : task.extensionRequest?.status === 'rejected' ? 'error' : 'warning'}
                               size="small"
                             />
                           </TableCell>
                           <TableCell align="right">
-                            <Button
-                              size="small"
-                              color="primary"
-                              onClick={() => {
-                                setSelectedTask(task);
-                                setShowExtensionModal(true);
-                              }}
-                            >
-                              Review
-                            </Button>
+                            {task.extensionRequest?.status === 'pending' && (
+                              <Button
+                                size="small"
+                                color="primary"
+                                onClick={() => {
+                                  setSelectedTask(task);
+                                  setShowExtensionModal(true);
+                                }}
+                              >
+                                Review
+                              </Button>
+                            )}
                           </TableCell>
                         </TableRow>
                     ))}
-                    {tasks.filter(task => task.extensionRequest?.requested && task.extensionRequest?.status === 'pending').length === 0 && (
+                    {tasks.filter(task => task.extensionRequest?.requested).length === 0 && (
                       <TableRow>
-                        <TableCell colSpan={7} align="center">
-                          No pending extension requests
+                        <TableCell colSpan={8} align="center">
+                          No extension requests found
                         </TableCell>
                       </TableRow>
                     )}
@@ -935,6 +1071,13 @@ const AdminDashboard = () => {
             <>
               <Typography variant="subtitle1" gutterBottom>
                 Task: {selectedTask.title}
+              </Typography>
+              <Typography 
+                variant="body2" 
+                gutterBottom
+                sx={{ color: 'text.secondary', mb: 2 }}
+              >
+                Project: {typeof selectedTask.project === 'object' && selectedTask.project !== null ? selectedTask.project.name : selectedTask.project || 'No Project Assigned'}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 Requested by: {selectedTask.assignedTo?.name}

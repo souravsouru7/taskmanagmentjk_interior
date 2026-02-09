@@ -1,0 +1,135 @@
+/* Mobile-specific fixes and improvements */
+
+/* Prevent zoom on input focus for iOS */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+  
+  /* Ensure proper touch targets */
+  button,
+  .MuiButton-root,
+  .MuiIconButton-root {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text selection on buttons */
+  button,
+  .MuiButton-root {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Fix for Material-UI Dialog on mobile */
+@media screen and (max-width: 600px) {
+  .MuiDialog-paper {
+    margin: 16px;
+    width: calc(100% - 32px);
+    max-width: 100%;
+  }
+  
+  .MuiDialog-paperWidthSm {
+    max-width: calc(100% - 32px);
+  }
+}
+
+/* Fix for tables on mobile */
+@media screen and (max-width: 768px) {
+  .MuiTableContainer-root {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .MuiTable-root {
+    min-width: 600px;
+  }
+}
+
+/* Fix for cards on mobile */
+@media screen and (max-width: 480px) {
+  .MuiCard-root {
+    margin: 8px 0;
+  }
+  
+  .MuiCardContent-root {
+    padding: 12px;
+  }
+  
+  .MuiCardActions-root {
+    padding: 8px 12px 12px;
+  }
+}
+
+/* Fix for app bar on mobile */
+@media screen and (max-width: 600px) {
+  .MuiAppBar-root {
+    min-height: 56px;
+  }
+  
+  .MuiToolbar-root {
+    min-height: 56px;
+  }
+}
+
+/* Fix for drawer on mobile */
+@media screen and (max-width: 600px) {
+  .MuiDrawer-paper {
+    max-width: 90vw;
+  }
+}
+
+/* Prevent horizontal scrolling */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Improve scrolling performance */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Fix for MUI Select on mobile */
+@media screen and (max-width: 768px) {
+  .MuiSelect-select {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+
+/* Ensure proper viewport height handling */
+html, body {
+  height: 100%;
+  max-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Fix for date pickers on mobile */
+@media screen and (max-width: 768px) {
+  .MuiPickersPopper-root {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    transform: none !important;
+  }
+  
+  .MuiPickersPopper-paper {
+    border-radius: 12px 12px 0 0 !important;
+    max-height: 70vh !important;
+  }
+}

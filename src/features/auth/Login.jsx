@@ -11,6 +11,7 @@ import {
   Alert,
   useTheme,
   CircularProgress,
+  useMediaQuery,
 } from '@mui/material';
 import { login, clearError } from './authSlice';
 
@@ -24,6 +25,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   // Clear errors when component mounts
   useEffect(() => {
@@ -68,7 +70,14 @@ const Login = () => {
   };
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container 
+      component="main" 
+      maxWidth="xs" 
+      sx={{ 
+        px: { xs: 2, sm: 0 },
+        py: { xs: 1, sm: 0 }
+      }}
+    >
       <Box
         sx={{
           minHeight: '100vh',
@@ -76,17 +85,19 @@ const Login = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          py: 4,
+          py: { xs: 2, sm: 4 },
+          px: { xs: 1, sm: 0 },
         }}
       >
         <Paper
           elevation={3}
           sx={{
-            padding: 4,
+            padding: { xs: 2, sm: 4 },
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             width: '100%',
+            maxWidth: { xs: '100%', sm: '400px' },
             background: 'rgba(255, 255, 255, 0.95)',
             backdropFilter: 'blur(10px)',
           }}
@@ -95,7 +106,7 @@ const Login = () => {
             sx={{
               width: '100%',
               textAlign: 'center',
-              mb: 3,
+              mb: { xs: 2, sm: 3 },
             }}
           >
             <Typography
@@ -105,6 +116,7 @@ const Login = () => {
                 fontWeight: 700,
                 color: theme.palette.primary.main,
                 mb: 1,
+                fontSize: { xs: '1.5rem', sm: '2.125rem' },
               }}
             >
               JK TaskManagement
@@ -164,6 +176,7 @@ const Login = () => {
               autoFocus
               value={formData.email}
               onChange={handleChange}
+              size={isMobile ? "small" : "medium"}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '&:hover fieldset': {
@@ -183,6 +196,7 @@ const Login = () => {
               autoComplete="current-password"
               value={formData.password}
               onChange={handleChange}
+              size={isMobile ? "small" : "medium"}
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '&:hover fieldset': {

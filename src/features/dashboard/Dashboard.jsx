@@ -118,8 +118,8 @@ const Dashboard = () => {
         </Tooltip>
       </Box>
 
-      <Container maxWidth="lg" sx={{ mt: { xs: 2, sm: 4 }, mb: { xs: 2, sm: 4 } }}>
-        <Typography variant="h4" gutterBottom sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem', md: '2rem' } }}>
+      <Container maxWidth="lg" sx={{ mt: { xs: 2, sm: 4 }, mb: { xs: 2, sm: 4 }, px: { xs: 1, sm: 2 } }}>
+        <Typography variant="h4" gutterBottom sx={{ fontSize: { xs: '1.25rem', sm: '1.5rem', md: '2rem' }, px: { xs: 1, sm: 0 } }}>
           Welcome, {user?.name}!
         </Typography>
         <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>

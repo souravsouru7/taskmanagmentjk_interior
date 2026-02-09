@@ -165,7 +165,7 @@ const TasksList = () => {
     }
 
     return (
-        <Box sx={{ mt: 2, p: { xs: 1, sm: 2 } }}>
+        <Box sx={{ mt: { xs: 1, sm: 2 }, p: { xs: 1, sm: 2 }, width: '100%' }}>
             <Box sx={{ 
                 display: 'flex', 
                 justifyContent: 'space-between', 

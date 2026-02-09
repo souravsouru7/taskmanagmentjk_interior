@@ -32,6 +32,7 @@ import { logout } from '../../features/auth/authSlice';
 import { Notifications } from '../../features/notifications';
 
 const drawerWidth = 240;
+const mobileDrawerWidth = 280;
 
 const Layout = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -122,8 +123,14 @@ const Layout = () => {
       <AppBar
         position="fixed"
         sx={{
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          ml: { sm: `${drawerWidth}px` },
+          width: { 
+            xs: '100%',
+            sm: `calc(100% - ${drawerWidth}px)` 
+          },
+          ml: { 
+            xs: 0,
+            sm: `${drawerWidth}px` 
+          },
         }}
       >
         <Toolbar>
@@ -136,7 +143,15 @@ const Layout = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+          <Typography 
+            variant="h6" 
+            noWrap 
+            component="div" 
+            sx={{ 
+              flexGrow: 1,
+              fontSize: { xs: '1.1rem', sm: '1.25rem' }
+            }}
+          >
             {menuItems.find(item => item.path === window.location.pathname)?.text || 'TaskMan'}
           </Typography>
           <Notifications />
@@ -183,7 +198,7 @@ const Layout = () => {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: mobileDrawerWidth },
           }}
         >
           {drawer}
@@ -192,7 +207,10 @@ const Layout = () => {
           variant="permanent"
           sx={{
             display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box', 
+              width: { sm: drawerWidth, md: drawerWidth } 
+            },
           }}
           open
         >
@@ -203,9 +221,12 @@ const Layout = () => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          mt: '64px',
+          p: { xs: 1, sm: 2, md: 3 },
+          width: { 
+            xs: '100%',
+            sm: `calc(100% - ${drawerWidth}px)`
+          },
+          mt: { xs: '56px', sm: '64px' },
         }}
       >
         <Outlet />

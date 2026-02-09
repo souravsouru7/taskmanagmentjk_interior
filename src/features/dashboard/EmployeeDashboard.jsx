@@ -274,7 +274,15 @@ const EmployeeDashboard = () => {
                 Task Progress
               </Typography>
               <Box display="flex" alignItems="center" mb={2}>
-                <Typography variant="h4" sx={{ mr: 2, fontSize: { xs: '1.5rem', sm: '2rem' } }}>
+                <Typography 
+                  variant="h4" 
+                  sx={{ 
+                    mr: 2, 
+                    fontSize: { xs: '1.5rem', sm: '2rem' },
+                    fontWeight: 600,
+                    color: 'text.primary'
+                  }}
+                >
                   {Math.round(completionPercentage)}%
                 </Typography>
                 <Box flexGrow={1}>
@@ -286,10 +294,22 @@ const EmployeeDashboard = () => {
                 </Box>
               </Box>
               <Box display="flex" justifyContent="space-between">
-                <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
+                <Typography 
+                  variant="body2" 
+                  sx={{ 
+                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                    fontWeight: 500
+                  }}
+                >
                   Completed: {taskStats.completed}
                 </Typography>
-                <Typography variant="body2" sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}>
+                <Typography 
+                  variant="body2" 
+                  sx={{ 
+                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                    fontWeight: 500
+                  }}
+                >
                   Total: {taskStats.total}
                 </Typography>
               </Box>
@@ -298,26 +318,118 @@ const EmployeeDashboard = () => {
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
           <Paper sx={{ p: 2, textAlign: 'center', height: '100%' }}>
-            <Typography variant="h6" color="primary">Total Tasks</Typography>
-            <Typography variant="h3">{taskStats.total}</Typography>
+            <Typography 
+              variant="h6" 
+              color="primary" 
+              sx={{ fontWeight: 500 }}
+            >
+              Total Tasks
+            </Typography>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                fontWeight: 600,
+                color: 'text.primary'
+              }}
+            >
+              {taskStats.total}
+            </Typography>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Paper sx={{ p: 2, textAlign: 'center', height: '100%', bgcolor: 'warning.light' }}>
-            <Typography variant="h6" color="white">Pending</Typography>
-            <Typography variant="h3" color="white">{taskStats.pending}</Typography>
+          <Paper 
+            sx={{ 
+              p: 2, 
+              textAlign: 'center', 
+              height: '100%', 
+              bgcolor: 'warning.light',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+            }}
+          >
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: 'white',
+                fontWeight: 500,
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              Pending
+            </Typography>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                color: 'white',
+                fontWeight: 600,
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              {taskStats.pending}
+            </Typography>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Paper sx={{ p: 2, textAlign: 'center', height: '100%', bgcolor: 'info.light' }}>
-            <Typography variant="h6" color="white">In Progress</Typography>
-            <Typography variant="h3" color="white">{taskStats.inProgress}</Typography>
+          <Paper 
+            sx={{ 
+              p: 2, 
+              textAlign: 'center', 
+              height: '100%', 
+              bgcolor: 'info.light',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+            }}
+          >
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: 'white',
+                fontWeight: 500,
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              In Progress
+            </Typography>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                color: 'white',
+                fontWeight: 600,
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              {taskStats.inProgress}
+            </Typography>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6} md={3}>
-          <Paper sx={{ p: 2, textAlign: 'center', height: '100%', bgcolor: 'success.light' }}>
-            <Typography variant="h6" color="white">Completed</Typography>
-            <Typography variant="h3" color="white">{taskStats.completed}</Typography>
+          <Paper 
+            sx={{ 
+              p: 2, 
+              textAlign: 'center', 
+              height: '100%', 
+              bgcolor: 'success.light',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
+            }}
+          >
+            <Typography 
+              variant="h6" 
+              sx={{ 
+                color: 'white',
+                fontWeight: 500,
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              Completed
+            </Typography>
+            <Typography 
+              variant="h3" 
+              sx={{ 
+                color: 'white',
+                fontWeight: 600,
+                textShadow: '1px 1px 2px rgba(0,0,0,0.3)'
+              }}
+            >
+              {taskStats.completed}
+            </Typography>
           </Paper>
         </Grid>
       </Grid>

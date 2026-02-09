@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from './App';
 import './index.css';
+import './mobile-fixes.css';
 
 // Suppress ResizeObserver loop error
 const originalConsoleError = console.error;
