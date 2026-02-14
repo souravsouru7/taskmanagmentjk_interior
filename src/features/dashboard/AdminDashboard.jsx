@@ -513,6 +513,13 @@ const RecentActivity = ({ tasks }) => {
     return null;
   }
 
+  // Helper to get project name with fallback
+  const getProjectName = (project) => {
+    if (!project) return 'No Project';
+    if (typeof project === 'string') return project;
+    return project.name || project.title || 'No Project';
+  };
+
   return (
     <Card>
       <CardContent>
@@ -525,17 +532,50 @@ const RecentActivity = ({ tasks }) => {
               <ListItem>
                 <ListItemText
                   primary={
-                    <Box display="flex" alignItems="center">
-                      {task.status === 'completed' && <CheckCircleIcon color="success" sx={{ mr: 1 }} />}
-                      {task.status === 'in-progress' && <WarningIcon color="warning" sx={{ mr: 1 }} />}
-                      {task.status === 'pending' && <ErrorIcon color="error" sx={{ mr: 1 }} />}
-                      <Typography variant="subtitle1">{task.title}</Typography>
+                    <Box display="flex" alignItems="center" flexWrap="wrap" gap={0.5}>
+                      {task.status === 'completed' && <CheckCircleIcon color="success" sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }} />}
+                      {task.status === 'in-progress' && <WarningIcon color="warning" sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }} />}
+                      {task.status === 'pending' && <ErrorIcon color="error" sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }} />}
+                      <Box>
+                        <Typography 
+                          variant="subtitle1" 
+                          sx={{ 
+                            fontWeight: 500,
+                            fontSize: { xs: '0.875rem', sm: '1rem' }
+                          }}
+                        >
+                          {task.title}
+                        </Typography>
+                        {/* Project name - shown prominently on mobile */}
+                        <Typography 
+                          variant="body2" 
+                          sx={{ 
+                            color: 'text.secondary',
+                            fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                            mt: { xs: 0.5, sm: 0 },
+                            display: { xs: 'block', sm: 'inline' },
+                            '&::before': { 
+                              content: { xs: '"Project: "', sm: '" — Project: "' },
+                              fontWeight: 500,
+                              color: 'text.primary'
+                            }
+                          }}
+                        >
+                          {getProjectName(task.project)}
+                        </Typography>
+                      </Box>
                     </Box>
                   }
                   secondary={
-                    <Typography variant="body2" color="text.secondary">
-                      Due: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'No due date'}
-                    </Typography>
+                    <Box sx={{ mt: { xs: 0.5, sm: 0 } }}>
+                      <Typography 
+                        variant="body2" 
+                        color="text.secondary" 
+                        sx={{ fontSize: { xs: '0.75rem', sm: '0.875rem' } }}
+                      >
+                        Due: {task.dueDate ? new Date(task.dueDate).toLocaleDateString() : 'No due date'}
+                      </Typography>
+                    </Box>
                   }
                 />
                 <Chip
@@ -545,6 +585,13 @@ const RecentActivity = ({ tasks }) => {
                     task.status === 'in-progress' ? 'warning' : 'error'
                   }
                   size="small"
+                  sx={{ 
+                    ml: { xs: 0, sm: 1 },
+                    mt: { xs: 1, sm: 0 },
+                    alignSelf: { xs: 'flex-start', sm: 'center' },
+                    fontSize: { xs: '0.65rem', sm: '0.75rem' },
+                    height: { xs: 20, sm: 24 }
+                  }}
                 />
               </ListItem>
               <Divider />
